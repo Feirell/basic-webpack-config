@@ -1,0 +1,33 @@
+{
+  "name": "webpack-config",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack build --mode production",
+    "start": "webpack serve --mode development"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/react": "^17.0.6",
+    "@types/react-dom": "^17.0.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.5",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "sass": "^1.34.0",
+    "sass-loader": "^11.1.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
