@@ -1,15 +1,11 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const {HotModuleReplacementPlugin} = require("webpack");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const rel = str => path.join(__dirname, str);
 
-module.exports = {
+const baseConfig = {
     name: "base",
     entry: ["./src/index.js", "./src/other.scss"],
-    mode: "development",
-    devtool: "source-map",
     optimization: {
         splitChunks: {
             chunks: 'all',
@@ -47,7 +43,6 @@ module.exports = {
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    // "style-loader",
                     "css-loader"
                 ]
             },
@@ -55,31 +50,37 @@ module.exports = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    // Creates `style` nodes from JS strings
-                    // "style-loader",
-                    // Translates CSS into CommonJS
                     "css-loader",
-                    // Compiles Sass to CSS
                     "sass-loader",
                 ],
             },
         ]
     },
     resolve: {extensions: ["*", ".js", ".jsx", ".ts", ".tsx"]},
-    output: {
-        path: rel("public/dist"),
-        publicPath: "dist",
-        filename: "[name]-bundle.js"
-    },
-    devServer: {
-        contentBase: [rel("public"), rel("other-dir")],
-        contentBasePublicPath: ['/', '/other'],
-        port: 3000,
-        publicPath: "http://localhost:3000/dist",
-        // Only enable this if you think that you can make hot module replacement working.
-        // I had no such case, so I just use a full page reload.
-        // hot: true
-    },
     plugins: [new MiniCssExtractPlugin()]
-    // plugins: [new webpack.HotModuleReplacementPlugin()]
 };
+
+module.exports = [
+    {
+        ...baseConfig,
+        mode: "production",
+
+        output: {
+            path: rel("public/dist"),
+            publicPath: "dist",
+            filename: "[name]-bundle.js"
+        }
+    }, {
+        ...baseConfig,
+        mode: "development",
+        devtool: "source-map",
+        devServer: {
+            contentBase: [rel("public"), rel("other-dir")],
+            contentBasePublicPath: ['/', '/other'],
+            port: 3000,
+            publicPath: "http://localhost:3000/dist",
+            // Only enable this if you think that you can make hot module replacement working.
+            // I had no such case, so I just use a full page reload.
+            // hot: true
+        },
+    }];
