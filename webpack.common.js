@@ -3,6 +3,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const rel = str => path.join(__dirname, str);
 
+// if the babel rc can not not be found or loaded do it manually:
+// const babelConfig = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc')));
+
 module.exports = {
     name: "base",
     entry: ["./src/index.js", "./src/other.scss"],
@@ -33,11 +36,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|mjs|ts|jsx|tsx)$/i,
+                test: /\.m?[jt]sx?$/i,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
                 }
+                // if there are issues loading the babelrc use this:
+                // use: {
+                //     loader: "babel-loader",
+                //     options: {
+                //         ...babelConfig
+                //     }
+                // }
             },
             {
                 test: /\.css$/i,
