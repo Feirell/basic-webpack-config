@@ -8,7 +8,7 @@ const rel = str => path.join(__dirname, str);
 
 module.exports = {
     name: "base",
-    entry: ["./src/index.js", "./src/other.scss"],
+    entry: ["./src/index.tsx"],
     optimization: {
         splitChunks: {
             chunks: 'all',
@@ -67,7 +67,7 @@ module.exports = {
         ]
     },
     resolve: {extensions: ["*", ".js", ".jsx", ".ts", ".tsx"]},
-    plugins: [new MiniCssExtractPlugin()],
+    plugins: [new MiniCssExtractPlugin({filename: 'main-bundle.css'})],
     output: {
         path: rel("public/dist"),
         publicPath: "dist",

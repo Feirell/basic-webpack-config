@@ -8,12 +8,22 @@ module.exports = {
     mode: "development",
     devtool: "source-map",
     devServer: {
-        contentBase: [rel("public"), rel("other-dir")],
-        contentBasePublicPath: ['/', '/other'],
         port: 3000,
-        publicPath: "http://localhost:3000/dist",
         // Only enable this if you think that you can make hot module replacement working.
         // I had no such case, so I just use a full page reload.
         // hot: true
+        devMiddleware: {
+            publicPath: "http://localhost:3000/dist",
+        },
+        static: [
+            {
+                directory: rel("public"),
+                publicPath: '/',
+            },
+            {
+                directory: rel("other-dir"),
+                publicPath: '/other',
+            }
+        ]
     },
 };

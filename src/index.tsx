@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./app.jsx";
+
+import './base.scss'
 
 document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(<App/>, document.getElementById("root"));
+    ReactDOM.render(<h1>Hi this is the app!</h1>, document.getElementById("root"));
 });
