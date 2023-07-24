@@ -1,9 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOMClient from 'react-dom/client';
 
-import './base.scss'
+import './global.scss';
+import {App} from "./app";
 
-document.addEventListener('DOMContentLoaded', () => {
-    const mountElem = document.getElementById("root");
-    ReactDOM.render(<h1>Hi this is the app!</h1>, mountElem);
-});
+function mount() {
+    const rootContainer = document.getElementById('root')!;
+    const root = ReactDOMClient.createRoot(rootContainer);
+
+    root.render(
+        <React.StrictMode>
+            <App/>
+        </React.StrictMode>
+    );
+}
+
+document.addEventListener('DOMContentLoaded', mount);

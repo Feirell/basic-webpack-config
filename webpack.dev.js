@@ -9,20 +9,19 @@ module.exports = {
     devtool: "source-map",
     devServer: {
         port: 3000,
-        // Only enable this if you think that you can make hot module replacement working.
-        // I had no such case, so I just use a full page reload.
-        // hot: true
+        // can disable hot module replacement, which result in full page reload
+        // hot: false
         devMiddleware: {
             publicPath: "http://localhost:3000/dist",
+        },
+        historyApiFallback: {
+            // for single page application
+            index: 'index.html'
         },
         static: [
             {
                 directory: rel("public"),
                 publicPath: '/',
-            },
-            {
-                directory: rel("other-dir"),
-                publicPath: '/other',
             }
         ]
     },

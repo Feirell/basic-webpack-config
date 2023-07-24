@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const rel = str => path.join(__dirname, str);
 
-// if the babel rc can not not be found or loaded do it manually:
+// if the babel rc can not be found or loaded do it manually:
 // const babelConfig = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc')));
 
 module.exports = {
